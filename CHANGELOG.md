@@ -3,8 +3,9 @@
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
 
-<a name="2.2.0"></a>
-## 2.2.0
+<a name="2.2.2"></a>
+## 2.2.2
+- Package released under the name `2domain`
 - Forked from /peerigon
 - Added valid_domain property
 - Added fulldomain property

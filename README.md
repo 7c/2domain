@@ -11,14 +11,14 @@ This module uses a [trie](https://en.wikipedia.org/wiki/Trie) data structure und
 # Installation
 
 ```sh
-npm install parsedomain
+npm install 2domain
 ```
 
 # Updating Database
 You might need to update the database from time to time. Sometimes database downloading might fail and you might need to download it manually
 
 ```sh
-cd node-modules/parsedomain && node scripts-build-tries.js
+cd node-modules/2domain && node scripts-build-tries.js
 ```
 
 
