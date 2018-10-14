@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+
+<a name="2.2.0"></a>
+## 2.2.0
+- Forked from /peerigon
+- Added valid_domain property
+- Added fulldomain property
+- Added hostname property
+- Fixed some issue described [here](https://github.com/peerigon/parse-domain/issues/49)
+- Documented how to update Lists manually
+- Tested 2.1.2 and 2.2.0 against 50Million hosts from real logs to make sure the patch is still compatible with the version from [peerigon](https://github.com/peerigon/parse-domain)
+
+# FORKED
+
 <a name="2.1.2"></a>
 ## [2.1.2](https://github.com/peerigon/parse-domain/compare/v2.1.1...v2.1.2) (2018-06-13)
 

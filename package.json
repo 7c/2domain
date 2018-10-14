@@ -1,6 +1,6 @@
 {
-  "name": "parse-domain",
-  "version": "2.1.2",
+  "name": "parsedomain",
+  "version": "2.2.0",
   "description": "Splits an url into sub-domain, domain and effective top-level-domain",
   "main": "./lib/parseDomain.js",
   "scripts": {
@@ -23,10 +23,8 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/peerigon/parse-domain.git"
-  },
-  "author": "peerigon <developers@peerigon.com>",
-  "license": "Unlicense",
+    "url": "https://github.com/7c/parsedomain.git"
+  },  
   "dependencies": {
     "chai": "^4.1.2",
     "fs-copy-file-sync": "^1.1.1",

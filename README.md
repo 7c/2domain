@@ -1,30 +1,28 @@
-parse-domain
+parsedomain
 ============
 **Splits a URL into sub-domain, domain and the top-level domain.**
 
-[![](https://img.shields.io/npm/v/parse-domain.svg)](https://www.npmjs.com/package/parse-domain)
-[![](https://img.shields.io/npm/dm/parse-domain.svg)](https://www.npmjs.com/package/parse-domain)
-[![Dependency Status](https://david-dm.org/peerigon/parse-domain.svg)](https://david-dm.org/peerigon/parse-domain)
-[![Build Status](https://travis-ci.org/peerigon/parse-domain.svg?branch=master)](https://travis-ci.org/peerigon/parse-domain)
-[![Coverage Status](https://img.shields.io/coveralls/peerigon/parse-domain.svg)](https://coveralls.io/r/peerigon/parse-domain?branch=master)
-
-Since domains are handled differently across different countries and organizations, splitting a URL into sub-domain, domain and top-level-domain parts is not a simple regexp. **parse-domain** uses a [large list of known top-level domains](https://publicsuffix.org/list/public_suffix_list.dat) from publicsuffix.org to recognize different parts of the domain.
+Since domains are handled differently across different countries and organizations, splitting a URL into sub-domain, domain and top-level-domain parts is not a simple regexp. **parsedomain** uses a [large list of known top-level domains](https://publicsuffix.org/list/public_suffix_list.dat) from publicsuffix.org to recognize different parts of the domain.
 
 This module uses a [trie](https://en.wikipedia.org/wiki/Trie) data structure under the hood to ensure the smallest possible library size and the fastest lookup. The library is roughly 30KB minified and gzipped. Since publicsuffix.org is frequently updated, the data structure is built on `npm install` as a `postinstall` hook. If something goes wrong during that step, the library falls back to a prebuilt list that has been built at the time of publishing.
 
 <br />
 
-Installation
-------------------------------------------------------------------------
+# Installation
 
 ```sh
-npm install parse-domain
+npm install parsedomain
 ```
 
-<br />
+# Updating Database
+You might need to update the database from time to time. Sometimes database downloading might fail and you might need to download it manually
 
-Usage
-------------------------------------------------------------------------
+```sh
+cd node-modules/parsedomain && node scripts-build-tries.js
+```
+
+
+# Usage
 
 ```javascript
 // long subdomains can be handled
@@ -128,11 +126,5 @@ Returns `null` if `url` has an unknown tld or if it's not a valid url.
 
 <br />
 
-License
-------------------------------------------------------------------------
-
-Unlicense
-
-## Sponsors
-
-[<img src="https://assets.peerigon.com/peerigon/logo/peerigon-logo-flat-spinat.png" width="150" />](https://peerigon.com)
+### Forked
+This repo was forked from [peerigon](https://github.com/peerigon/parse-domain) and modified/extended
