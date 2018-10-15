@@ -18,9 +18,13 @@ npm install 2domain
 You might need to update the database from time to time. Sometimes database downloading might fail and you might need to download it manually
 
 ```sh
-cd node-modules/2domain && node scripts/build-tries.js
+node node-modules/2domain/scripts/build-tries.js
 ```
 
+# Updating Database Strategy
+I suggest update the files from crontab regularly. This repo returns a 0 if build-tries was successfully tested by mocha. So you might crontab like `node <path>/scripts/build-tries.js && node <path>/scrpits/write-pre.js` This would download and store the files to pre/ folder if mocha tests were successfull. Why would you need a pre/ folder: imagine you get internet outage while executing build-tries.js then you might have invalid or broken data. build-tries.js automatically taking the content from pre/ in case of such an error. That is why it it important to keep pre/ up2date, to recover from emergency cases.
+
+Probably you would need to restart your services if they run long term too, because the .json files are read from tries modules and kept in memory during lifetime of the service. You might want to keep restarting your long-running services regularly or build something to detect changes and restart
 
 # Usage
 
@@ -125,6 +129,13 @@ Returns `null` if `url` has an unknown tld or if it's not a valid url.
 ```
 
 <br />
+
+## Tests
+
+```sh
+cd <project_path>
+node_modules/mocha/bin/mocha -R dot node_modules/2domain/test/
+```
 
 ### Forked
 This repo was forked from [peerigon](https://github.com/peerigon/parse-domain) and modified/extended
