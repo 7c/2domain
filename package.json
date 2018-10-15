@@ -1,6 +1,6 @@
 {
   "name": "2domain",
-  "version": "2.2.5",
+  "version": "2.2.6",
   "description": "Splits an url into sub-domain, domain and effective top-level-domain",
   "main": "./lib/parseDomain.js",
   "scripts": {

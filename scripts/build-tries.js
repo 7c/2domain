@@ -42,6 +42,8 @@ function findMocha() {
     // if it is installed with -g flag
     p = '/usr/bin/mocha'
     if (fs.existsSync(p)) return p
+    p = path.join(rootPath,'..','.bin/mocha')
+    if (fs.existsSync(p)) return p
 
     return false
 }
@@ -79,7 +81,7 @@ got(PUBLIC_SUFFIX_URL)
         if (mocha)
         {
             process.stderr.write("Running sanity check... ");
-            childProcess.execSync(`cd '${rootPath}';${mocha} -R dot`).toString()                        
+            childProcess.execSync(`cd '${rootPath}';'${mocha}' -R dot`).toString()                        
             process.stderr.write("ok" + os.EOL);
         }
         else {
