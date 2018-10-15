@@ -30,6 +30,22 @@ const tries = [
     },
 ];
 
+
+function findMocha() {
+    var p
+    // find it inside node_modules folder
+    p = path.join(rootPath,'..','mocha/bin/mocha')
+    if (fs.existsSync(p)) return p
+    // find it inside node_modules folder
+    p = path.join(rootPath,'..','..','mocha/bin/mocha')
+    if (fs.existsSync(p)) return p
+    // if it is installed with -g flag
+    p = '/usr/bin/mocha'
+    if (fs.existsSync(p)) return p
+
+    return false
+}
+
 process.stderr.write(`Downloading public suffix list from ${ PUBLIC_SUFFIX_URL }... `);
 
 got(PUBLIC_SUFFIX_URL)
@@ -59,9 +75,16 @@ got(PUBLIC_SUFFIX_URL)
             })
     )
     .then(() => {
-        process.stderr.write("Running sanity check... ");
-        childProcess.execSync(`cd '${rootPath}';mocha -R dot`).toString()                        
-        process.stderr.write("ok" + os.EOL);
+        var mocha = findMocha()
+        if (mocha)
+        {
+            process.stderr.write("Running sanity check... ");
+            childProcess.execSync(`cd '${rootPath}';${mocha} -R dot`).toString()                        
+            process.stderr.write("ok" + os.EOL);
+        }
+        else {
+            throw new Error('Mocha not found')            
+        }
         process.stderr.write("Success" + os.EOL);
         process.exit(0)
     })
