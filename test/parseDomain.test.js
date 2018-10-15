@@ -13,16 +13,25 @@ describe("parseDomain(url)", () => {
             subdomain: "",
             domain: "example",
             tld: "com",
+            fulldomain: "example.com",
+            hostname: "example.com",
+            valid_domain: true
         });
         expect(parseDomain("//example.com")).to.eql({
             subdomain: "",
             domain: "example",
             tld: "com",
+            fulldomain: "example.com",
+            hostname: "example.com",
+            valid_domain: true
         });
         expect(parseDomain("https://example.com")).to.eql({
             subdomain: "",
             domain: "example",
             tld: "com",
+            fulldomain: "example.com",
+            hostname: "example.com",
+            valid_domain: true
         });
     });
 
@@ -31,11 +40,18 @@ describe("parseDomain(url)", () => {
             subdomain: "www",
             domain: "example",
             tld: "com",
+            valid_domain: true,
+            fulldomain: "example.com",
+            hostname: "www.example.com"
+            
         });
         expect(parseDomain("www.some.other.subdomain.example.com")).to.eql({
             subdomain: "www.some.other.subdomain",
             domain: "example",
             tld: "com",
+            valid_domain: true,
+            hostname: "www.some.other.subdomain.example.com",
+            fulldomain: "example.com"
         });
     });
 
@@ -44,11 +60,18 @@ describe("parseDomain(url)", () => {
             subdomain: "",
             domain: "example",
             tld: "com",
+
+            valid_domain: true,
+            hostname: "example.com",
+            fulldomain: "example.com"
         });
         expect(parseDomain("example.com/")).to.eql({
             subdomain: "",
             domain: "example",
             tld: "com",
+            valid_domain: true,
+            hostname: "example.com",
+            fulldomain: "example.com"
         });
     });
 
@@ -57,6 +80,9 @@ describe("parseDomain(url)", () => {
             subdomain: "",
             domain: "example",
             tld: "com",
+            valid_domain: true,
+            hostname: "example.com",
+            fulldomain: "example.com"
         });
     });
 
@@ -65,6 +91,9 @@ describe("parseDomain(url)", () => {
             subdomain: "m",
             domain: "example",
             tld: "com",
+            valid_domain: true,
+            hostname: "m.example.com",
+            fulldomain: "example.com"
         });
     });
 
@@ -73,6 +102,9 @@ describe("parseDomain(url)", () => {
             subdomain: "",
             domain: "example",
             tld: "com",
+            valid_domain: true,
+            hostname: "example.com",
+            fulldomain: "example.com"
         });
     });
 
@@ -81,6 +113,9 @@ describe("parseDomain(url)", () => {
             subdomain: "",
             domain: "example",
             tld: "com",
+            valid_domain: true,
+            hostname: "example.com",
+            fulldomain: "example.com"
         });
     });
 
@@ -89,6 +124,9 @@ describe("parseDomain(url)", () => {
             subdomain: "",
             domain: "medium",
             tld: "com",
+            valid_domain: true,
+            hostname: "medium.com",
+            fulldomain: "medium.com"
         });
     });
 
@@ -97,6 +135,9 @@ describe("parseDomain(url)", () => {
             subdomain: "www",
             domain: "example",
             tld: "co.uk",
+            valid_domain: true,
+            hostname: "www.example.co.uk",
+            fulldomain: "example.co.uk"
         });
     });
 
@@ -105,6 +146,9 @@ describe("parseDomain(url)", () => {
             subdomain: "foo",
             domain: "blogspot",
             tld: "com",
+            valid_domain: true,
+            hostname: "foo.blogspot.com",
+            fulldomain: "blogspot.com"
         });
     });
 
@@ -113,6 +157,9 @@ describe("parseDomain(url)", () => {
             subdomain: "",
             domain: "foo",
             tld: "blogspot.com",
+            valid_domain: true,
+            hostname: "foo.blogspot.com",
+            fulldomain: "foo.blogspot.com"
         });
     });
 
@@ -122,6 +169,9 @@ describe("parseDomain(url)", () => {
                 subdomain: "www.some.other.subdomain",
                 domain: "example",
                 tld: "co.uk",
+                valid_domain: true,
+                hostname: "www.some.other.subdomain.example.co.uk",
+                fulldomain: "example.co.uk"
             }
         );
     });
@@ -131,6 +181,9 @@ describe("parseDomain(url)", () => {
             subdomain: "",
             domain: "example",
             tld: "com",
+            valid_domain: true,
+            hostname: "example.com",
+            fulldomain: "example.com"
         });
     });
 
@@ -149,6 +202,9 @@ describe("parseDomain(url)", () => {
             subdomain: "hello.de",
             domain: "ibm",
             tld: "com",
+            valid_domain: true,
+            hostname: "hello.de.ibm.com",
+            fulldomain: "ibm.com"
         });
     });
 
@@ -159,6 +215,9 @@ describe("parseDomain(url)", () => {
             subdomain: "",
             domain: "mymachine",
             tld: "local",
+            valid_domain: true,
+            hostname: "mymachine.local",
+            fulldomain: "mymachine.local"
         });
 
         // Sanity checks if the option does not misbehave
@@ -167,6 +226,9 @@ describe("parseDomain(url)", () => {
             subdomain: "",
             domain: "example",
             tld: "com",
+            valid_domain: true,
+            hostname: "example.com",
+            fulldomain: "example.com"
         });
     });
 
@@ -177,16 +239,25 @@ describe("parseDomain(url)", () => {
             subdomain: "",
             domain: "mymachine",
             tld: "local",
+            valid_domain: true,
+            hostname: "mymachine.local",
+            fulldomain: "mymachine.local"
         });
         expect(parseDomain("localhost", options)).to.eql({
             subdomain: "",
             domain: "",
             tld: "localhost",
+            valid_domain: true,
+            hostname: "localhost",
+            fulldomain: "localhost"
         });
         expect(parseDomain("localhost:8080", options)).to.eql({
             subdomain: "",
             domain: "",
             tld: "localhost",
+            valid_domain: true,
+            hostname: "localhost",
+            fulldomain: "localhost"
         });
 
         // Sanity checks if the option does not misbehave
@@ -195,6 +266,9 @@ describe("parseDomain(url)", () => {
             subdomain: "",
             domain: "example",
             tld: "com",
+            valid_domain: true,
+            hostname: "example.com",
+            fulldomain: "example.com"
         });
     });
 });

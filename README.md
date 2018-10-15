@@ -18,7 +18,7 @@ npm install 2domain
 You might need to update the database from time to time. Sometimes database downloading might fail and you might need to download it manually
 
 ```sh
-cd node-modules/2domain && node scripts-build-tries.js
+cd node-modules/2domain && node scripts/build-tries.js
 ```
 
 
