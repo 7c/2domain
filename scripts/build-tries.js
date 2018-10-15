@@ -1,9 +1,9 @@
 "use strict";
-
 const os = require("os");
 const fs = require("fs");
 const path = require("path");
 const childProcess = require("child_process");
+
 const got = require("got");
 const copySync = require("fs-copy-file-sync");
 const mkdirp = require("mkdirp");
@@ -35,7 +35,6 @@ process.stderr.write(`Downloading public suffix list from ${ PUBLIC_SUFFIX_URL }
 got(PUBLIC_SUFFIX_URL)
     .then(res => {
         process.stderr.write("ok" + os.EOL);
-
         return res.body;
     })
     .then(parsePubSuffixList)
@@ -61,31 +60,28 @@ got(PUBLIC_SUFFIX_URL)
     )
     .then(() => {
         process.stderr.write("Running sanity check... ");
-        childProcess.spawnSync("mocha -R dot", {
-            cwd: rootPath,
-            encoding: "utf8",
-            stdio: "ignore",
-        });
+        childProcess.execSync(`cd '${rootPath}';mocha -R dot`).toString()                        
         process.stderr.write("ok" + os.EOL);
+        process.stderr.write("Success" + os.EOL);
+        process.exit(0)
     })
     .catch(err => {
         console.error("");
         console.error("Could not update list of known top-level domains for parse-domain because of " + err.message);
 
+        // copy from pre>current
         tries.forEach(list => {
             const src = path.resolve(triesPrePath, list.filename);
             const dest = path.resolve(triesPath, list.filename);
-
             mkdirp.sync(path.dirname(dest));
             copySync(src, dest);
         });
 
         const prebuiltList = JSON.parse(fs.readFileSync(path.resolve(triesPrePath, tries[0].filename)));
-
         console.error("Using possibly outdated prebuilt list from " + new Date(prebuiltList.updatedAt).toDateString());
-
-        // We can recover using the (possibly outdated) prebuilt list, hence exit code 0
-        process.exit(0); // eslint-disable-line no-process-exit
+        
+        // indicate error
+        process.exit(2); // eslint-disable-line no-process-exit
     })
     .catch(() => {
         process.exit(1); // eslint-disable-line no-process-exit
