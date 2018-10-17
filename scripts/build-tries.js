@@ -77,6 +77,11 @@ got(PUBLIC_SUFFIX_URL)
             })
     )
     .then(() => {
+	if (process.argv.includes('notest')) {
+	process.stderr.write("Success" + os.EOL);
+        process.exit(0)
+	}
+	console.log(process.argv)
         var mocha = findMocha()
         if (mocha)
         {

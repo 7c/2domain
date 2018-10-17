@@ -1,13 +1,13 @@
 {
   "name": "2domain",
-  "version": "2.2.7",
+  "version": "2.2.8",
   "description": "Splits an url into sub-domain, domain and effective top-level-domain",
   "main": "./lib/parseDomain.js",
   "scripts": {
     "test": "nyc mocha -R spec",
     "posttest": "eslint lib test",
     "postinstall": "node scripts/build-tries.js",
-    "prepare": "node scripts/write-pre.js",
+    "prepare": "node scripts/write-pre.js notest",
     "release": "standard-version"
   },
   "keywords": [
