@@ -81,7 +81,6 @@ got(PUBLIC_SUFFIX_URL)
 	process.stderr.write("Success" + os.EOL);
         process.exit(0)
 	}
-	console.log(process.argv)
         var mocha = findMocha()
         if (mocha)
         {
