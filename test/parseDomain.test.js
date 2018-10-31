@@ -247,7 +247,7 @@ describe("parseDomain(url)", () => {
             subdomain: "",
             domain: "",
             tld: "localhost",
-            valid_domain: true,
+            valid_domain: false,
             hostname: "localhost",
             fulldomain: "localhost"
         });
@@ -255,7 +255,7 @@ describe("parseDomain(url)", () => {
             subdomain: "",
             domain: "",
             tld: "localhost",
-            valid_domain: true,
+            valid_domain: false,
             hostname: "localhost",
             fulldomain: "localhost"
         });
@@ -266,7 +266,7 @@ describe("parseDomain(url)", () => {
             subdomain: "",
             domain: "example",
             tld: "com",
-            valid_domain: true,
+            valid_domain: true,            
             hostname: "example.com",
             fulldomain: "example.com"
         });
