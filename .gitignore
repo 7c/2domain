@@ -1,3 +1,5 @@
+release.sh
+demo.js
 # Project specific
 .nyc_output
 private/
